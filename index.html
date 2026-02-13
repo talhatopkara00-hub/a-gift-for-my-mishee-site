@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will You Be My Valentine?</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #ffc0cb;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+.container {
+    text-align: center;
+}
+
+.heart {
+    position: relative;
+    width: 400px;
+    height: 350px;
+    background-color: #f4a6b1;
+    transform: rotate(-45deg);
+    margin: 0 auto 40px auto;
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 350px;
+    background-color: #f4a6b1;
+    border-radius: 50%;
+}
+
+.heart::before {
+    top: -200px;
+    left: 0;
+}
+
+.heart::after {
+    left: 200px;
+    top: 0;
+}
+
+.heart-text {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+button {
+    padding: 15px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+#yesBtn {
+    background-color: green;
+    color: white;
+}
+
+#noBtn {
+    background-color: red;
+    color: white;
+    position: absolute;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="heart">
+        <div class="heart-text">Will you be my valentine?</div>
+    </div>
+
+    <div class="buttons">
+        <button id="yesBtn">Yes</button>
+        <button id="noBtn">No</button>
+    </div>
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+
+noBtn.addEventListener("mouseover", function() {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+});
+
+document.getElementById("yesBtn").addEventListener("click", function() {
+    window.location.href = "yes.html";
+});
+</script>
+
+</body>
+</html>
