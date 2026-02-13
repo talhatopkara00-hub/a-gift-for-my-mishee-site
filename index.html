@@ -3,118 +3,121 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Will You Be My Valentine?</title>
-
+<title>My Valentine 💖</title>
 <style>
-body {
-    margin: 0;
-    padding: 0;
-    background-color: #ffc0cb;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: Arial, sans-serif;
-    overflow: hidden;
+body{
+margin:0;
+padding:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#ffc0cb;
+font-family:Arial, sans-serif;
+overflow:hidden;
+transition:0.8s;
 }
-
-.container {
-    text-align: center;
+.center{
+text-align:center;
+position:relative;
+z-index:2;
 }
-
-.heart {
-    position: relative;
-    width: 400px;
-    height: 350px;
-    background-color: #f4a6b1;
-    transform: rotate(-45deg);
-    margin: 0 auto 40px auto;
+.heart{
+position:relative;
+width:400px;
+height:350px;
+background:#f4a6b1;
+transform:rotate(-45deg);
+margin:0 auto 40px;
 }
-
-.heart::before,
-.heart::after {
-    content: "";
-    position: absolute;
-    width: 400px;
-    height: 350px;
-    background-color: #f4a6b1;
-    border-radius: 50%;
+.heart:before,
+.heart:after{
+content:"";
+position:absolute;
+width:400px;
+height:350px;
+background:#f4a6b1;
+border-radius:50%;
 }
-
-.heart::before {
-    top: -200px;
-    left: 0;
+.heart:before{top:-200px;left:0;}
+.heart:after{left:200px;top:0;}
+.heart-text{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%) rotate(45deg);
+color:white;
+font-size:30px;
+font-weight:bold;
+width:80%;
+text-align:center;
 }
-
-.heart::after {
-    left: 200px;
-    top: 0;
+button{
+padding:15px 25px;
+font-size:18px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+margin:10px;
 }
-
-.heart-text {
-    position: absolute;
-    width: 100%;
-    text-align: center;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(45deg);
-    color: white;
-    font-size: 30px;
-    font-weight: bold;
+#yes{background:green;color:white;}
+#no{background:red;color:white;position:absolute;}
+.flower{
+position:absolute;
+top:-50px;
+font-size:30px;
+animation:fall linear infinite;
+z-index:1;
 }
-
-.buttons {
-    margin-top: 20px;
-}
-
-button {
-    padding: 15px 25px;
-    font-size: 18px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    margin: 10px;
-}
-
-#yesBtn {
-    background-color: green;
-    color: white;
-}
-
-#noBtn {
-    background-color: red;
-    color: white;
-    position: absolute;
+@keyframes fall{
+0%{transform:translateY(0);}
+100%{transform:translateY(110vh);}
 }
 </style>
 </head>
-
 <body>
 
-<div class="container">
-    <div class="heart">
-        <div class="heart-text">Will you be my valentine?</div>
-    </div>
-
-    <div class="buttons">
-        <button id="yesBtn">Yes</button>
-        <button id="noBtn">No</button>
-    </div>
+<div class="center" id="mainContent">
+<div class="heart">
+<div class="heart-text">Will you be my valentine?</div>
+</div>
+<button id="yes">Yes</button>
+<button id="no">No</button>
 </div>
 
 <script>
-const noBtn = document.getElementById("noBtn");
-
-noBtn.addEventListener("mouseover", function() {
-    const x = Math.random() * (window.innerWidth - 100);
-    const y = Math.random() * (window.innerHeight - 50);
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
+const noBtn=document.getElementById("no");
+noBtn.addEventListener("mouseover",function(){
+const x=Math.random()*(window.innerWidth-100);
+const y=Math.random()*(window.innerHeight-50);
+noBtn.style.left=x+"px";
+noBtn.style.top=y+"px";
 });
 
-document.getElementById("yesBtn").addEventListener("click", function() {
-    window.location.href = "yes.html";
+document.getElementById("yes").addEventListener("click",function(){
+document.body.innerHTML=`
+<div class="center">
+<div class="heart">
+<div class="heart-text" style="font-size:20px;">
+Thank you sooooo much for still wanting to be my girlfriend despite all the obstacles and distance between us. When hearts are united, distance doesn't matter, my Minnie Mouse. From a Turkish boy who loves you.
+</div>
+</div>
+</div>`;
+startFlowers();
 });
+
+function startFlowers(){
+const colors=["🌷","🌷","🌷","🌷","🌷"];
+setInterval(()=>{
+const flower=document.createElement("div");
+flower.className="flower";
+flower.innerHTML=colors[Math.floor(Math.random()*colors.length)];
+flower.style.left=Math.random()*window.innerWidth+"px";
+flower.style.animationDuration=(3+Math.random()*5)+"s";
+document.body.appendChild(flower);
+setTimeout(()=>flower.remove(),8000);
+},300);
+}
 </script>
 
 </body>
